@@ -1,81 +1,24 @@
 <template>
   <form >
     <div class="plans" >
-        <!-- <div class="form-group-check" v-for="item in addOnList" :key="item.id">
+        <div class="form-group-check" v-for="item in items" :key="item.id">
             <label for="service" class="form-group-check-container">
-                <input type="checkbox" >
+                <input type="checkbox" :value="JSON.stringify(item)" @change="updateSelectedItems($event)"  v-model="selectedItems">
                 <span class="checkbox-icon"></span>
                 <div class="adds-details">
                     <div>
-                        <p>{{ item.addName }}</p>
+                        <p>{{ item.name }}</p>
                         <span>{{ item.description }}</span>
                     </div>
-                    <p class="adds-price"> ${{ item.planPrice.monthly }}/mo</p>
+                    <p id="adds-price"> ${{ timePeriod === 'monthly' ? item.money.month : item.money.year }}/mo</p>
                 </div>
             </label>
-        </div> -->
-            <!-- <div class="input-label">
-                <input type="checkbox" name="plan" id="service" class="service" value="Online-service" checked="checked" v-model="selectedOptions">
-                <label for="service">
-                    <div class="label-text">
-                        <div class="text">
-                            <h3>Online service</h3>
-                            <p>Access to multiplayer games</p>
-                        </div>
-                        <div>
-                            <p>+$1/mo</p>
-                        </div>
-                    </div>
-                </label>
-            </div>
-
-            <div class="input-label">
-                <input type="checkbox" name="plan" id="storage" value="Larger-storage" class="storage" v-model="selectedOptions">
-                <label for="storage">
-                    <div class="label-text">
-                        <div class="text">
-                            <h3>Larger storage</h3>
-                            <p>Extra 1TB of cloud save</p>
-                        </div>
-                        <div>
-                            <p>+$2/mo</p>
-                        </div>
-                    </div>
-                </label>
-            </div>
-
-            <div class="input-label">
-                <input type="checkbox" name="plan" id="profile" value="Customizable-profile" class="profile" v-model="selectedOptions">
-                <label for="profile">
-                    <div class="label-text">
-                        <div class="text">
-                            <h3>Customizable profile</h3>
-                            <p>Custom theme on your profile</p>
-                        </div>
-                        <div class="lang">
-                            <p>+$2/mo</p>
-                        </div>
-                    </div>
-                </label>
-            </div> -->
-            <div class="form-group-check" v-for="item in items" :key="item.id">
-                <label for="service" class="form-group-check-container">
-                    <input type="checkbox" :value="JSON.stringify(item)" @change="updateSelectedItems($event)"  v-model="selectedItems">
-                    <span class="checkbox-icon"></span>
-                    <div class="adds-details">
-                        <div>
-                            <p>{{ item.name }}</p>
-                            <span>{{ item.description }}</span>
-                        </div>
-                        <p id="adds-price"> ${{ timePeriod === 'monthly' ? item.money.month : item.money.year }}/mo</p>
-                    </div>
-                </label>
-            </div>
         </div>
-        <div class="submit">
-            <button id="btn-back" class="btn-back"><router-link id="btn-back" to="/second">Go Back</router-link></button>
-            <button id="btn-forward" @click="submitForm">Next step</button>
-        </div>
+    </div>
+    <div class="submit">
+        <button id="btn-back" class="btn-back"><router-link id="btn-back" to="/second">Go Back</router-link></button>
+        <button id="btn-forward" @click="submitForm">Next step</button>
+    </div>
   </form>
 </template>
 
