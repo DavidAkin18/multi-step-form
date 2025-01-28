@@ -9,7 +9,7 @@
         </label><br>
 
         <label for="tel"><div class="error"><p  class="label-name">Phone Number </p><p v-if="telError" > {{ telError }} </p></div> 
-            <input type="number" name="tel" id="tel" placeholder="e.g. +1 234 567 890" v-model="tel" >
+            <input type="tel" name="tel" id="tel" placeholder="e.g. +1 234 567 890" v-model="tel" >
         </label>
        
         <div class="submit">

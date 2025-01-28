@@ -17,7 +17,10 @@
 
         <div class="plan-type">
             <div class="mon" @click="updateTimePeriod('monthly')" :class="{ 'yo': timePeriod ==='monthly' }"  id="mon">monthly</div>
-            <div class="roll" @click="!updateTimePeriod" :class="{ 'rol': timePeriod !== 'yearly' }"><span class="roller" ></span></div>
+            <div class="roll" @click="toggleTimePeriod" :class="{ 'rol': timePeriod !== 'yearly' }">
+                <span class="roller"></span>
+            </div>
+
             <div class="yea" @click="updateTimePeriod('yearly')" :class="{ 'mo': timePeriod === 'yearly' }">yearly</div>
         </div>
         <div id="submit">
@@ -85,6 +88,11 @@ export default {
         },
         updateTimePeriod(period){
             this.$store.dispatch('updateTimePeriod', period);
+        },
+        toggleTimePeriod() {
+            // Toggle between monthly and yearly
+            const newPeriod = this.timePeriod === 'monthly' ? 'yearly' : 'monthly';
+            this.$store.dispatch('updateTimePeriod', newPeriod);
         }
     }
 
@@ -201,6 +209,7 @@ input[ type= "radio" ]:checked + label{
     border-radius: 20px;
     display: flex;
     justify-content: flex-end;
+    position: relative;
     align-items: center;  
 }
 .roller{
@@ -209,12 +218,15 @@ input[ type= "radio" ]:checked + label{
    margin: 2px;
    height: 10px;
    width: 10px;
+   position: absolute;
+   transition: transform 0.3s ease;
 }
 .rol{
     display: flex;
     justify-content: flex-start;
     align-items: center;
 }
+
 .submit{
     display: flex;
     justify-content: space-between;
